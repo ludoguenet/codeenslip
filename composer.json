@@ -11,12 +11,13 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^2.0",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest": "^2.33",
+        "pestphp/pest-plugin-laravel": "^2.2",
         "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
@@ -46,6 +47,20 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --ansi"
+        ],
+        "pint": [
+            "@php ./vendor/bin/pint"
+        ],
+        "stan": [
+            "@php ./vendor/bin/phpstan analyse"
+        ],
+        "pest": [
+            "@php ./vendor/bin/pest --parallel"
+        ],
+        "clean": [
+            "@php composer pint",
+            "@php composer stan",
+            "@php composer pest"
         ]
     },
     "extra": {
