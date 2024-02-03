@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->mediumText('description');
-            $table->string('image_url')->nullable();
 
             $table->boolean('is_published')->default(false);
 

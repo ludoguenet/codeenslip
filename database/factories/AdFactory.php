@@ -27,7 +27,6 @@ final class AdFactory extends Factory
             'title' => $title,
             'slug' => $slug,
             'description' => $this->faker->sentences(3, true),
-            'image_url' => null,
             'is_published' => true,
             'user_id' => User::factory(),
         ];
