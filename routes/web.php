@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 
 Route::get('/media/{media}', function (Media $media) {
-    $path = $media->getPath();
-
-    return response()->file($path);
-})->name('media.url');
+    return response()->file($media->getPath());
+})
+    ->middleware('signed')
+    ->name('media.url');
 
 Route::post('/upload', function () {
     DB::table('media')->truncate();
@@ -22,10 +22,10 @@ Route::post('/upload', function () {
 
     $file = request('file');
 
-    $ad->addMedia($file, 'logos');
+    $ad->addMedia($file, 'pictures', 'announces');
 
-    $ad->firstMedia()->getPath();
-    $ad->firstMedia()->stream();
-    $ad->firstMedia()->getUrl();
+    // return $ad->firstMedia()->getPath();
+    // $ad->firstMedia()->stream();
+    return $ad->firstMedia()->getUrl();
 
 })->name('upload');
